@@ -122,7 +122,7 @@ def start(bot: Bot, update: Update, args: List[str]):
             send_start(bot, update)
     else:
         try:
-            update.effective_message.reply_text("Hey there! I'm alive :3")
+            update.effective_message.reply_text("Hoi sup! I'm alive :3")
         except:
             print("Nut")
 
@@ -135,14 +135,14 @@ def send_start(bot, update):
         pass
 
     #chat = update.effective_chat  # type: Optional[Chat] and unused variable
-    text = "Hey there! My name is Haruka Aya - I'm here to help you manage your groups!\n\
+    text = "Hey there! My name is Wolverine - I'm here to help you manage your groups!\n\
 Click Help button to find out more about how to use me to my full potential.\n\n"
 
-    text += "Join [Haruka Aya Group](https://t.me/HarukaAyaGroup) ( @HarukaAyaGroup ) if you need any support or help\n\n\
-Follow [Haruka Aya](https://t.me/HarukaAya) ( @HarukaAya ) if you want to keep up with the news, updates and bot downtime!\n\n\
-Made with love by @RealAkito\n\nWant to add me to your group? [Click here!](t.me/HarukaAyaBot?startgroup=true)"
+    text += "Join [Binverse Group](https://t.me/Binverse1) ( @Binverse1 ) if you need any support or help\n\n\
+Follow [Binverse xD](https://t.me/Binverse) ( @binverse ) if you want to keep up with the news, updates and bot downtime!\n\n\
+Made with love by @Nitin181\n\nWant to add me to your group? [Click here!](t.me/wolverinexmen_Bot?startgroup=true)"
 
-    keyboard = [[InlineKeyboardButton(text="📢 Support Group", url="https://t.me/HarukaAyaGroup")]]
+    keyboard = [[InlineKeyboardButton(text="📢 Support Group", url="https://t.me/binverse1")]]
     keyboard += [[InlineKeyboardButton(text="🛠 Control panel", callback_data="cntrl_panel_M")]]
     keyboard += [[InlineKeyboardButton(text="🇺🇸 Language", callback_data="set_lang_"), 
         InlineKeyboardButton(text="❔ Help", callback_data="help_back")]]
@@ -244,7 +244,7 @@ def control_panel(bot, update):
         chatP = chat
         conn = connected(bot, update, chat, user.id)
 
-        if not conn == False:
+        if conn:
             chat = bot.getChat(conn)
         else:
             query.message.reply_text(text="Error with connection to chat")
@@ -297,12 +297,9 @@ def error_callback(bot, update, error):
     try:
         raise error
     except Unauthorized:
-        LOGGER.warning("NO NONO1")
         LOGGER.warning(error)
         # remove update.message.chat_id from conversation list
     except BadRequest:
-        LOGGER.warning("NO NONO2")
-        LOGGER.warning("BadRequest caught")
         LOGGER.warning(error)
 
         # handle malformed requests - read more below!
@@ -313,7 +310,6 @@ def error_callback(bot, update, error):
         LOGGER.warning("NO NONO4")
         # handle other connection problems
     except ChatMigrated as err:
-        LOGGER.warning("NO NONO5")
         LOGGER.warning(err)
         # the chat_id of a group has changed, use e.new_chat_id instead
     except TelegramError:
@@ -577,7 +573,7 @@ def main():
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
-        updater.start_webhook(listen="127.0.0.1",
+        updater.start_webhook(listen="0.0.0.0",
                               port=PORT,
                               url_path=TOKEN)
 
@@ -590,7 +586,7 @@ def main():
     else:
         LOGGER.info("Using long polling.")
         # updater.start_polling(timeout=15, read_latency=4, clean=True)
-        updater.start_polling(poll_interval=0.0, timeout=10, clean=False, bootstrap_retries=-1, read_latency=3.0)
+        updater.start_polling(poll_interval=0.0, timeout=10, clean=True, bootstrap_retries=-1, read_latency=3.0)
     updater.idle()
 
 CHATS_CNT = {}
