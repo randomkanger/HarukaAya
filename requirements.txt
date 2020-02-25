@@ -25,5 +25,3 @@ tldextract
 PyYAML
 pyowm
 wikipedia
-bleach
-markdown2
